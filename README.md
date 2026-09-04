@@ -1,6 +1,5 @@
-# Personal Gemini Journal
-
-A secure, production-grade journaling and brainstorming web application built with Google AI Studio, Firebase Authentication, Cloud Firestore, and deployed on Google Cloud Run.
+# Personal Gemini Journal - Cloud Run AI Challenge
+An authenticated, secure AI journaling web application built using Google AI Studio, Firebase Auth, Cloud Firestore, and deployed on Google Cloud Run.
 
 ## Architecture & Tech Stack
 - **Frontend/Backend:** Full-stack app generated via Google AI Studio Custom Instructions.
