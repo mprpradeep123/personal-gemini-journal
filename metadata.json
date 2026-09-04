@@ -1,0 +1,6 @@
+{
+  "name": "Personal Gemini Journal",
+  "description": "Full-stack reflective journaling app with Firebase Google Authentication, multi-turn Gemini AI reflection partner, isolated Cloud Firestore storage, and AI-powered weekly mood and theme insights.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

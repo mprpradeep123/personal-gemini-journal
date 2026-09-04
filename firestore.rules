@@ -1,0 +1,24 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Strict user partition: users/{userId}/journals/{journalId}
+    // Only authenticated users can access documents in their own partition
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+
+      match /journals/{journalId} {
+        // Enforce user ownership: authenticated UID must match document path
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+
+      match /insights/{insightId} {
+        // Enforce user ownership: authenticated UID must match document path
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+
+      match /{subcollection=**} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+  }
+}
