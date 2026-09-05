@@ -17,9 +17,10 @@ A secure, user-authenticated journaling web application that enables multi-turn 
 Ensure you have the Google Cloud SDK (`gcloud`) installed and authenticated:
 
 ```bash
-# Set your project ID and region
-export PROJECT_ID="pradeep-test-507608"
-export REGION="asia-southeast1"
+
+# Set your project ID and region variables
+export PROJECT_ID="YOUR_GCP_PROJECT_ID"
+export REGION="asia-southeast1" # Or your target region, e.g., us-central1
 gcloud config set project $PROJECT_ID
 
 # Enable required Google Cloud APIs
@@ -64,14 +65,20 @@ Deploy the owner-bound security rules to ensure zero cross-user access:
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Zero Insecure Defaults: deny all access by default
-    match /{document=**} {
-      allow read, write: if false;
-    }
-
-    // User data isolation: strictly bound to authenticated user ID
-    match /users/{userId}/journals/{journalId} {
+    match /users/{userId} {
       allow read, write: if request.auth != null && request.auth.uid == userId;
+
+      match /journals/{journalId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+
+      match /insights/{insightId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+
+      match /{subcollection=**} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
     }
   }
 }
