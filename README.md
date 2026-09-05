@@ -1,4 +1,4 @@
-# Personal Gemini Journal — Secure AI Introspection & Reflection
+# Personal Gemini Journal - Secure AI Introspection & Reflection
 
 A secure, user-authenticated journaling web application that enables multi-turn reflections and brainstorming with Google's Gemini API, securely isolating each user's entries in Google Cloud Firestore via Firebase Authentication.
 
